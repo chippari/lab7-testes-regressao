@@ -13,3 +13,5 @@ REQ-04 (WHILE): WHILE a região de entrega for 'Norte', THE SYSTEM SHALL acresce
 REQ-05 (WHEN): WHEN o valor total for calculado, THE SYSTEM SHALL arredondá-lo para 2 casas decimais.
 
 REQ-06 (WHEN): WHEN o pedido for fechado, THE SYSTEM SHALL somar preço × quantidade de cada item do carrinho para obter o subtotal e calcular o total conforme REQ-01 a REQ-05.
+
+REQ-07 (IF/THEN): IF o cliente informar o cupom 'DESCONTO10', THEN THE SYSTEM SHALL aplicar 10% de desconto sobre o subtotal dos itens antes de calcular o frete. Qualquer outro cupom SHALL ser rejeitado com o erro 'Cupom inválido'.

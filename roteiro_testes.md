@@ -1,10 +1,10 @@
 # Roteiro de Testes — Cálculo de Frete (Exercício 7.1)
 
-- **Spec:** specs/checkout_frete.md (REQ-01 a REQ-05)
+- **Spec:** specs/checkout_frete.md (REQ-01 a REQ-07)
 - **Plataforma:** Windows 11, Python 3.14, pytest, PyCharm
 - **Pré-requisito:** .venv ativo com pytest instalado
-- **Componentes:** calcular_total(subtotal, regiao) em frete.py e fechar_pedido(itens, regiao) em carrinho.py
-- Resultado obtido e status são preenchidos na execução (exercícios 7.2 a 7.4).
+- **Componentes:** calcular_total(subtotal, regiao) em frete.py e fechar_pedido(itens, regiao, cupom) em carrinho.py
+- Resultado obtido e status são preenchidos na execução (exercícios 7.2 a 7.5).
 
 ## Testes Unitários (componente único: `calcular_total`)
  
@@ -84,4 +84,29 @@
 - **Dados:** 3 livros de R$ 89,90; região Norte
 - **Resultado esperado:** R$ 269,70 (frete grátis, sem adicional do Norte, pois REQ-02 prevalece)
 - **Resultado obtido:** R$ 269,70
+- **Status:** Sucesso
+
+
+## Testes da Nova Funcionalidade (cupom, REQ-07)
+
+### CT-11 — Cupom aplica 10% de desconto
+- **Cenário:** cliente do Sudeste usa DESCONTO10
+- **Passos:** chamar `fechar_pedido([(100.00, 1)], "Sudeste", "DESCONTO10")`
+- **Dados:** 1 item de R$ 100,00; cupom DESCONTO10
+- **Resultado esperado:** R$ 105,00 (subtotal R$ 90,00 + frete R$ 15,00)
+- **Resultado obtido:** R$ 105,00
+- **Status:** Sucesso
+### CT-12 — Desconto faz perder o frete grátis
+- **Cenário:** subtotal acima do limite cai para baixo dele com o desconto
+- **Passos:** chamar `fechar_pedido([(260.00, 1)], cupom="DESCONTO10")`
+- **Dados:** 1 item de R$ 260,00; cupom DESCONTO10
+- **Resultado esperado:** R$ 249,00 (subtotal R$ 234,00 + frete R$ 15,00)
+- **Resultado obtido:** R$ 249,00
+- **Status:** Sucesso
+### CT-13 — Cupom inválido é rejeitado
+- **Cenário:** cliente informa um cupom que não existe
+- **Passos:** chamar `fechar_pedido([(100.00, 1)], cupom="XYZ")`
+- **Dados:** cupom XYZ
+- **Resultado esperado:** erro `ValueError("Cupom inválido")`
+- **Resultado obtido:** erro ValueError(“Cupom inválido”)
 - **Status:** Sucesso
