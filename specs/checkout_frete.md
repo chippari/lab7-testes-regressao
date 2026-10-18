@@ -8,7 +8,7 @@ REQ-02 (IF/THEN): IF o subtotal do carrinho for maior ou igual a R$ 250,00, THEN
 
 REQ-03 (IF/THEN): IF o subtotal do carrinho for menor ou igual a R$ 0,00, THEN THE SYSTEM SHALL exibir o erro 'Valor de carrinho inválido'.
 
-REQ-04 (WHILE): WHILE a região de entrega for 'Norte', THE SYSTEM SHALL acrescentar R$ 10,00 à taxa de frete. Demais regiões: manter taxa padrão.
+REQ-04 (WHILE): WHILE a região de entrega for 'Norte' ou 'Nordeste', THE SYSTEM SHALL acrescentar R$ 10,00 à taxa base de frete de R$ 15,00, exceto se o subtotal do carrinho for superior a R$ 300,00, caso em que o frete é grátis. Para essas regiões, esta regra substitui o limite de frete grátis do REQ-02.
 
 REQ-05 (WHEN): WHEN o valor total for calculado, THE SYSTEM SHALL arredondá-lo para 2 casas decimais.
 
