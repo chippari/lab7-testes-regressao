@@ -25,8 +25,8 @@ def test_req02_frete_gratis_para_subtotal_maior_ou_igual_250():
     assert calcular_total(300.0) == 300.00
     # Logo abaixo do limite: R$ 249.99 deve cobrar taxa de frete padrão
     assert calcular_total(249.99) == 264.99
-    # Frete grátis mesmo para região Norte quando subtotal >= 250,00
-    assert calcular_total(250.0, regiao="Norte") == 250.00
+    # Frete grátis para outras regiões (ex: Sudeste) quando subtotal >= 250,00
+    assert calcular_total(250.0, regiao="Sudeste") == 250.00
 
 
 # REQ-03 (IF/THEN): IF o subtotal do carrinho for menor ou igual a R$ 0,00, THEN THE SYSTEM SHALL exibir o erro 'Valor de carrinho inválido'.
@@ -40,15 +40,15 @@ def test_req03_erro_subtotal_menor_ou_igual_a_zero():
         calcular_total(-10.0)
 
 
-# REQ-04 (WHILE): WHILE a região de entrega for 'Norte', THE SYSTEM SHALL acrescentar R$ 10,00 à taxa de frete. Demais regiões: manter taxa padrão.
+# REQ-04 (WHILE): WHILE a região de entrega for 'Norte' ou 'Nordeste', THE SYSTEM SHALL acrescentar R$ 10,00 à taxa base de frete de R$ 15,00. Demais regiões: manter taxa padrão.
 def test_req04_acrescimo_regiao_norte_e_manutencao_demais_regioes():
-    # Região Norte: taxa padrão (R$ 15,00) + R$ 10,00 = R$ 25,00
+    # Regiões Norte e Nordeste: taxa padrão (R$ 15,00) + R$ 10,00 = R$ 25,00
     assert calcular_total(100.0, regiao="Norte") == 125.00
+    assert calcular_total(100.0, regiao="Nordeste") == 125.00
 
     # Demais regiões: taxa padrão (R$ 15,00)
     assert calcular_total(100.0, regiao="Sudeste") == 115.00
     assert calcular_total(100.0, regiao="Sul") == 115.00
-    assert calcular_total(100.0, regiao="Nordeste") == 115.00
     assert calcular_total(100.0, regiao="Centro-Oeste") == 115.00
 
 

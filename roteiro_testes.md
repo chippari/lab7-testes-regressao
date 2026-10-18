@@ -82,8 +82,8 @@
 - **Cenário:** cliente do Norte compra 3 livros e passa do limite
 - **Passos:** montar o pedido e chamar `fechar_pedido` com os itens e a região
 - **Dados:** 3 livros de R$ 89,90; região Norte
-- **Resultado esperado:** R$ 269,70 (frete grátis, sem adicional do Norte, pois REQ-02 prevalece)
-- **Resultado obtido:** R$ 269,70
+- **Resultado esperado:** R$ 294,70 (subtotal R$ 269,70 + frete R$ 25,00; atualizado pelo novo REQ-04)
+- **Resultado obtido:** R$ 294,70
 - **Status:** Sucesso
 
 

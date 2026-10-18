@@ -19,11 +19,11 @@ def test_ct09_compra_comum_sudeste():
     assert fechar_pedido(itens, "Sudeste") == 144.80
 
 
-# CT-10 — Compra grande no Norte ganha frete grátis
-def test_ct10_compra_grande_norte_frete_gratis():
+# CT-10 — Compra grande no Norte paga frete regional
+def test_ct10_compra_grande_norte_paga_frete_regional():
     # Cliente do Norte compra 3 livros de R$ 89,90
     itens = [
         (89.90, 3),  # 3 Livros
     ]
-    # Subtotal R$ 269,70 >= R$ 250,00 -> frete grátis (R$ 0,00) = R$ 269,70
-    assert fechar_pedido(itens, "Norte") == 269.70
+    # Subtotal R$ 269,70 + frete regional R$ 25,00 (não passa de R$ 300,00) = R$ 294,70
+    assert fechar_pedido(itens, "Norte") == 294.70
