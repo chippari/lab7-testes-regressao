@@ -15,3 +15,5 @@ REQ-05 (WHEN): WHEN o valor total for calculado, THE SYSTEM SHALL arredondá-lo 
 REQ-06 (WHEN): WHEN o pedido for fechado, THE SYSTEM SHALL somar preço × quantidade de cada item do carrinho para obter o subtotal e calcular o total conforme REQ-01 a REQ-05.
 
 REQ-07 (IF/THEN): IF o cliente informar o cupom 'DESCONTO10', THEN THE SYSTEM SHALL aplicar 10% de desconto sobre o subtotal dos itens antes de calcular o frete. Qualquer outro cupom SHALL ser rejeitado com o erro 'Cupom inválido'.
+
+REQ-08 (WHEN): WHEN o frete de um pedido for confirmado, THE SYSTEM SHALL consultar a taxa de frete no ServicoLogisticaAPI, somá-la ao subtotal e chamar uma única vez enviar_notificacao_rastreio(pedido_id) do ServicoNotificacao.
